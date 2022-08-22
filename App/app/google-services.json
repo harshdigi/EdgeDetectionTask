@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283041535125",
+    "project_id": "plotlinetask",
+    "storage_bucket": "plotlinetask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283041535125:android:9c9eae043ca2109d0bb79c",
+        "android_client_info": {
+          "package_name": "com.digitaldealsolution.plotlinetask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283041535125-n2o7lv9ovbkv8iit56ctqeuoo6l4cf12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQlgHmQxPDPVeljjm09PW1dcxpe8Ry2ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283041535125-n2o7lv9ovbkv8iit56ctqeuoo6l4cf12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
