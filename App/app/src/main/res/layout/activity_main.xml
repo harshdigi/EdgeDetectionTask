@@ -9,13 +9,12 @@
         android:id="@+id/history_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintStart_toEndOf="@id/heading"
+        android:elevation="25dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:cardBackgroundColor="@color/app_main"
-        android:layout_margin="10dp">
+        android:layout_margin="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +58,7 @@
         android:textSize="18sp"
         android:textColor="?android:textColorPrimary"
         android:textAllCaps="true"
-        app:layout_constraintTop_toBottomOf="@id/history_btn"
+        app:layout_constraintTop_toBottomOf="@id/heading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"/>
@@ -175,6 +174,7 @@
         android:text="Logout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

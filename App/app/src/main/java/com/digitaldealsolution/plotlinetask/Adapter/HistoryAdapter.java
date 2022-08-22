@@ -25,7 +25,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     ArrayList<ImageUpload> imageUploads = new ArrayList<>();
     Context context;
     long reference;
-    String base = "http://plotlinetask.asquarestudio.in";
+    String base = "https://plotlinetask.asquarestudio.in";
 
     public HistoryAdapter(ArrayList<ImageUpload> imageUploads, Context context) {
         this.imageUploads = imageUploads;

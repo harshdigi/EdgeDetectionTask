@@ -12,7 +12,7 @@ public class ApiClient {
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://plotlinetask.asquarestudio.in/")
+                    .baseUrl("https://plotlinetask.asquarestudio.in/")
                     .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                     .build();
         }

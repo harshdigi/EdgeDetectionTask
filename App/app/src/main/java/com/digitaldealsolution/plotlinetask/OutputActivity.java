@@ -29,7 +29,7 @@ public class OutputActivity extends AppCompatActivity {
     ImageView inputImage, outputImage;
     Button inputBtn, outputBtn;
 
-    String base_url ="http://plotlinetask.asquarestudio.in";
+    String base_url ="https://plotlinetask.asquarestudio.in";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +60,8 @@ public class OutputActivity extends AppCompatActivity {
         dialog.show();
         Glide.with(OutputActivity.this)
                 .load(base_url+outputModel.getOutputUrl())
+                .placeholder(R.drawable.ic_placeholder)
+                .dontAnimate()
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -77,6 +79,8 @@ public class OutputActivity extends AppCompatActivity {
                 .into(outputImage);
         Glide.with(OutputActivity.this)
                 .load(base_url+outputModel.getImageUrl())
+                .placeholder(R.drawable.ic_placeholder)
+                .dontAnimate()
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

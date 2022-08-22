@@ -28,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //Select Image From Url
     private void selectFromUrl() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this);
         builder.setTitle("Enter Url & Click Confirm");
@@ -192,11 +191,13 @@ public class MainActivity extends AppCompatActivity {
                 });
         builder.show();
     }
+    // Function to validate Url
     private boolean validateUrl(String url ) {
         Pattern p = Patterns.WEB_URL;
         Matcher m = p.matcher(url.toLowerCase());
         return m.matches();
     }
+    // select Image from gallery
     @RequiresApi(api = Build.VERSION_CODES.S)
     private void selectFromGallery() {
         PackageManager pm = getPackageManager();
@@ -209,28 +210,15 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(PERMISSION,1);
         }
     }
+    //Select image from came
     @SuppressLint("QueryPermissionsNeeded")
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void selectFromCamera() {
         PackageManager pm = getPackageManager();
         int hasPerm = pm.checkPermission(Manifest.permission.CAMERA, getPackageName());
         if (hasPerm == PackageManager.PERMISSION_GRANTED) {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ignored) {
-
-                }
-                if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(this,
-                            "com.example.android.fileprovider",
-                            photoFile);
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    startActivityForResult(takePictureIntent, PICK_IMAGE_CAMERA);
-                }
-            }
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,PICK_IMAGE_CAMERA);
         }
         else{
             requestPermissions(PERMISSION,1);
@@ -254,11 +242,17 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE_CAMERA) {
+                File imageFile = null;
                 try {
-                  uploadImages(firebaseAuth.getUid());
-                } catch (Exception e) {
+                    imageFile = createImageFile();
+                    FileOutputStream fos = new FileOutputStream(imageFile);
+                    Bitmap bitmap = (Bitmap)  data.getExtras().get("data");
+                    bitmap.compress(Bitmap.CompressFormat.PNG,80,fos);
+                    uploadImages(FirebaseAuth.getInstance().getUid());
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             } else if (requestCode == PICK_IMAGE_GALLERY) {
                 selectedImageUri = data.getData();
                 try {
@@ -315,7 +309,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ImageUpload> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Not uploaded",Toast.LENGTH_SHORT);
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this,"Not uploaded",Toast.LENGTH_LONG);
+
             }
         });
     }
